@@ -1,0 +1,14 @@
+This repository contains all necessary files for the CuSE System Level Design Lab.
+The code here does not work on it's own, SoCRocket needs to be installed with the media and pysc repositories enabled.
+
+To use the models provided in this repository you need the following packages installed:
+libsdl1.2-dev libavcodec-dev libavutil-dev libavformat-dev libavdevice-dev libavfilter-dev libswscale-dev
+
+libav should be at most version 9, newer version can be problematic. 
+To be able to build and link the libav, the following packages are needed: yasm, zlib1g, libasound
+
+Before running './waf configure' export the installation paths of those libraries:
+export AV_HOME="/usr/"
+export SDL_HOME="/usr/"
+
+The above instruction are valid for Ubuntu 14.04 LTS.

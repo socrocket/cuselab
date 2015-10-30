@@ -1,0 +1,16 @@
+#! /usr/bin/env python
+# vim : set fileencoding=utf-8 expandtab noai ts=4 sw=4 filetype=python :
+top = '../..'
+
+def build(self):
+    if "LIB_SDL" in self.env:
+        self(
+            target          = 'ahbdisplay',
+            features        = 'cxx cxxstlib',
+            source          = 'ahbdisplay.cpp yuv_viewer.cpp',
+            export_includes = ['.',self.top_dir,self.repository_root.abspath()],
+            includes        = ['.',self.top_dir,self.repository_root.abspath()],
+            use             = 'sr_signal common BOOST SYSTEMC TLM AMBA GREENSOCS SDL',
+            install_path    = '${PREFIX}/lib',
+        )
+
