@@ -1,0 +1,13 @@
+#! /usr/bin/env python
+# vim : set fileencoding=utf-8 expandtab noai ts=4 sw=4 filetype=python :
+top = '../..'
+
+def build(bld):
+  bld(
+     features     = 'c cprogram sparc',
+     target       = 'demo.sparc',
+     cflags       = '-static -g -O1 -lm',
+     linkflags    = '-static -g -O1 -lm',
+     source       = ['main.c'],
+     install_path = None,
+  )
