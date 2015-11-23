@@ -73,38 +73,16 @@ void AHBFrameTrigger::gen_frame() {
   // Wait for system becoming ready
   wait(1, SC_MS);
 
-  /*data = 0xF0000000; // Endianess! initialising multiple grayframers
-  ahbwrite(0x8005030C,(uint8_t*)&data,4);
-  data = 0xF0004001; // Endianess! 
-  ahbwrite(0x8005040C,(uint8_t*)&data,4);*/
   data = 0x03000000; // Endianess! 
   ahbwrite(0x80050000,(uint8_t*)&data,4); // ahbdisplay
   wait(1, SC_MS);
   data = 0x03000000; // Endianess! 
   ahbwrite(0x80050200,(uint8_t*)&data,4); // ahbgrayframer
   wait(1, SC_MS);
-  data = 0x03000000; // Endianess! 
-  ahbwrite(0x80050300,(uint8_t*)&data,4); // ahbshuffler1
-  wait(1, SC_MS);
-/*  data = 0x03000000; // Endianess! 
-  ahbwrite(0x80050400,(uint8_t*)&data,4); // ahbshuffler1
-  wait(1, SC_MS);
-  data = 0x03000000; // Endianess! 
-  ahbwrite(0x80050400,(uint8_t*)&data,4); // ahbshuffler2
-  wait(1, SC_MS);
-  data = 0x03000000; // Endianess! 
-  ahbwrite(0x80050500,(uint8_t*)&data,4); // ahbshuffler2
-  wait(1, SC_MS);*/
   while (1) {
     data = 0x03004001; // Endianess! 
     ahbwrite(0x80050100,(uint8_t*)&data,4); // ahbcamera
     wait(40, SC_MS);
-    /*data = 0x03000000; // Endianess! 
-    ahbwrite(0x80050300,(uint8_t*)&data,4); // ahbgrayframer1
-    data = 0x03000000; // Endianess! 
-    ahbwrite(0x80050400,(uint8_t*)&data,4); // ahbgrayframer2*/
-    // Wait for next frame trigger
-    //wait();
   }
 }
 
