@@ -227,7 +227,7 @@ int sc_main(int argc, char** argv) {
       ahbdisplay->ahb(ahbctrl.ahbIN);
       apbctrl.apb(ahbdisplay->apb);
       ahbdisplay->set_clk(p_system_clock,SC_NS);
-      ahbdisplay->triggerIn(shuffler0FrameSignal);
+      ahbdisplay->triggerIn(gray0FrameSignal);
       ahbdisplay->keyboardOut(keyCodeSignal);
     }
 #endif
