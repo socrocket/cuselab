@@ -1,6 +1,8 @@
 This repository contains all necessary files for the CuSE System Level Design Lab.
 The code here does not work on it's own, SoCRocket needs to be installed with the media and pysc repositories enabled.
 
+The instruction below are valid for Ubuntu 14.04 LTS only. New distributions might need additional work.
+
 To use the models provided in this repository you need the following packages installed:
 libsdl1.2-dev libavcodec-dev libavutil-dev libavformat-dev libavdevice-dev libavfilter-dev libswscale-dev
 
@@ -11,4 +13,4 @@ Before running './waf configure' export the installation paths of those librarie
 export AV_HOME="/usr/"
 export SDL_HOME="/usr/"
 
-The above instruction are valid for Ubuntu 14.04 LTS.
+
