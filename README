@@ -1,0 +1,37 @@
+This repository contains all necessary files for the CuSE System Level Design Lab.
+The code here does not work on it's own, SoCRocket needs to be installed with the media and pysc repositories enabled.
+
+Install Instructions for Ubuntu 16.04 LTS
+-----------------------------------------
+Install dependencies:
+sudo apt install libsdl1.2-dev yasm libfreetype6-dev zlib1g-dev libbz2-dev
+
+export SDL_HOME="/usr/"
+./waf configure
+
+Install Instructions for Ubuntu 14.04 LTS
+-----------------------------------------
+To use the models provided in this repository you need the following packages installed:
+libsdl1.2-dev libavcodec-dev libavutil-dev libavformat-dev libavdevice-dev libavfilter-dev libswscale-dev zlib1g libasound libbz2-dev yasm
+
+export AV_HOME="/usr/"
+export SDL_HOME="/usr/"
+./waf configure
+
+
+Install Instructions for CentOS 7
+---------------------------------
+Install dependencies
+sudo yum install SDL-devel SDL yasm freetype zlib bzip2-devel
+
+export SDL_HOME="/usr/"
+./waf configure
+
+
+Building and Execution
+----------------------
+./waf build --target=basesystem.platform
+
+Dont't forget to copy the testvideo before executing!
+
+./build/cuselab/platforms/basesystem/basesystem.platform
