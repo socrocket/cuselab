@@ -62,11 +62,6 @@ int main(int argc, char *argv[]) {
   gf->ctrl |= 0x3;
 
   loadimage(bunny_orig_png,videomem,0,0,width,height,width*2,height*2);
-  // allocate memory and copy image
-  uint8_t *imgcopy;
-  imgcopy = (uint8_t *)malloc(100);
-  //loadimage(bunny_orig_png,imgcopy,0,0,width,height,width,height);
-  printf("imgcopy addr: %x",*imgcopy);
 
   while(1) {
     if (kb->data) printf("sw got key: %d\n",kb->data);

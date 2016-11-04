@@ -53,8 +53,8 @@ int main(int argc, char *argv[]) {
 
   cam->ctrl = (width << 16);
   cam->video_addr = videomem;
-  cam->pos = 0; //(0 << 16) | 240;
-  cam->size = (width*2 << 16) | height*2; // height*2???
+  cam->pos = 0; 
+  cam->size = (width*2 << 16) | height*2; 
 
   vid->addr = videomem;
   vid->width = width*2;
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
   vid->ctrl |= 0x3;
 
   gf->addr = videomem;
-  gf->in_pos = 0; //(0 << 16) | height;
+  gf->in_pos = 0; 
   gf->out_pos = (width << 16) | 0;
   gf->size = (width*2 << 16) | height*2;
   gf->ctrl |= 0x3;

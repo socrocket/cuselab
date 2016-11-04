@@ -1,8 +1,8 @@
 top = '../..'
 
 def build(bld):
-    use   = 'ahbctrl ahbmem apbctrl sr_signal usi common pytools sr_registry sr_register sr_report'
-    use  += ' ahbdisplay ahbcamera ahbgrayframer ahbframetrigger ahbshuffler ahbdemosoftware AMBA TLM GREENSOCS SYSTEMC BOOST'
+    use   = 'BOOST ahbctrl ahbmem apbctrl sr_signal usi common pytools'
+    use  += ' ahbdisplay ahbcamera ahbgrayframer ahbframetrigger AMBA TLM GREENSOCS SYSTEMC BOOST'
       
     bld(
         target       = 'basesystem.platform',
@@ -10,6 +10,5 @@ def build(bld):
         source       = 'sc_main.cpp',
         includes     = '.',
         use          = use,
-        #ut_param     = ['singlecore.lt.prom', 'irqmp.sparc'],
     )
 

@@ -10,12 +10,11 @@
 ///            authors is strictly prohibited.
 /// @author Bastian Farkas 
 ///
-#ifdef HAVE_USI
+/*#ifdef HAVE_USI
 #include "pysc/usi.h"
-#endif
+#endif*/
 
 #include "core/common/systemc.h"
-#include "core/common/sr_param.h"
 #include <string.h>
 #include <sys/time.h>
 #include <time.h>
@@ -65,39 +64,6 @@ int sc_main(int argc, char** argv) {
     SR_INCLUDE_MODULE(ArrayStorage);
     SR_INCLUDE_MODULE(MapStorage);
     
-#ifdef HAVE_USI
-    // Initialize Python
-    USI_HAS_MODULE(systemc);
-    USI_HAS_MODULE(sr_registry);
-    USI_HAS_MODULE(delegate);
-    USI_HAS_MODULE(intrinsics);
-    USI_HAS_MODULE(greensocket);
-    USI_HAS_MODULE(scireg);
-    USI_HAS_MODULE(amba);
-    USI_HAS_MODULE(sr_report);
-    USI_HAS_MODULE(cci);
-    USI_HAS_MODULE(mtrace);
-    usi_init(argc, argv);
-    //sr_report_handler::handler = sr_report_handler::default_handler; <<-- Uncoment for C++ handler
-
-
-    // Core APIs will be loaded by usi_init:
-    // usi, usi.systemc, usi.api.delegate, usi.api.report
-    usi_load("usi.api.greensocket");
-    usi_load("sr_register.scireg");
-    usi_load("usi.api.amba");
-
-    //usi_load("usi.log.console_reporter");
-    usi_load("usi.tools.args");
-    usi_load("usi.cci");
-    //usi_load("tools.python.power");
-    usi_load("usi.shell");
-    usi_load("usi.tools.execute");
-    usi_load("usi.tools.elf");
-
-    usi_start_of_initialization();
-#endif  // HAVE_USI
-    
     // Build GreenControl Configuration Namespace
     // ==========================================
     gs::gs_param_array p_conf("conf");
@@ -114,7 +80,7 @@ int sc_main(int argc, char** argv) {
     gs::gs_param<bool> p_report_timing("timing", true, p_report);
     gs::gs_param<bool> p_report_power("power", true, p_report);
    
-    sc_signal<bool> cameraFrameSignal,shuffler0FrameSignal,shuffler1FrameSignal,shuffler2FrameSignal,shuffler3FrameSignal,demoFrameSignal,gray0FrameSignal, gray1FrameSignal,gray2FrameSignal;
+    sc_signal<bool> cameraFrameSignal,gray0FrameSignal;
     sc_signal<char> keyCodeSignal;
     
     uint32_t videoWidth = 320;
@@ -261,7 +227,7 @@ int sc_main(int argc, char** argv) {
       ahbdisplay->ahb(ahbctrl.ahbIN);
       apbctrl.apb(ahbdisplay->apb);
       ahbdisplay->set_clk(p_system_clock,SC_NS);
-      ahbdisplay->triggerIn(shuffler0FrameSignal);
+      ahbdisplay->triggerIn(gray0FrameSignal);
       ahbdisplay->keyboardOut(keyCodeSignal);
     }
 #endif
@@ -328,19 +294,13 @@ int sc_main(int argc, char** argv) {
     // disable Info messages
     sc_report_handler::set_actions(SC_INFO, SC_DO_NOTHING);
 
-#ifndef HAVE_USI
     (void) signal(SIGINT, stopSimFunction);
     (void) signal(SIGTERM, stopSimFunction);
-#endif
     cstart = cend = clock();
     cstart = clock();
     //mtrace();
 
-#ifdef HAVE_USI
-    usi_start();
-#else
     sc_core::sc_start();
-#endif
     //muntrace();
     cend = clock();
 

@@ -139,7 +139,7 @@ int sc_main(int argc, char** argv) {
     gs::gs_param<bool> p_report_timing("timing", true, p_report);
     gs::gs_param<bool> p_report_power("power", true, p_report);
    
-    sc_signal<bool> cameraFrameSignal,grayFrameSignal,demoFrameSignal;
+    sc_signal<bool> cameraFrameSignal,grayFrameSignal;
     sc_signal<char> keyCodeSignal;
      
     uint32_t videoWidth = 320;

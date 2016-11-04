@@ -73,10 +73,6 @@ void AHBFrameTrigger::gen_frame() {
   // Wait for system becoming ready
   wait(1, SC_MS);
 
-  /*data = 0xF0000000; // Endianess! initialising multiple grayframers
-  ahbwrite(0x8005030C,(uint8_t*)&data,4);
-  data = 0xF0004001; // Endianess! 
-  ahbwrite(0x8005040C,(uint8_t*)&data,4);*/
   data = 0x03000000; // Endianess! 
   ahbwrite(0x80050000,(uint8_t*)&data,4); // ahbdisplay
   wait(1, SC_MS);
